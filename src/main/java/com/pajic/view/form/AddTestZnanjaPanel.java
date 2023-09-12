@@ -8,6 +8,7 @@ import com.pajic.communication.Operation;
 import com.pajic.communication.Request;
 import com.pajic.communication.Response;
 import com.pajic.model.TestZnanja;
+import com.pajic.model.TipTestaZnanja;
 import com.pajic.validation.DigitOnlyFieldVerifier;
 import com.pajic.validation.TextFieldVerifier;
 import com.pajic.view.component.TableModelPitanja;
@@ -61,6 +62,8 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
         btnDeletePitanje = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        TipComboBox = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Naziv");
 
@@ -114,6 +117,8 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Pitanja");
 
+        jLabel4.setText("Tip");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +131,11 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNaziv))
+                                .addComponent(txtNaziv)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TipComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,7 +167,9 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
                         .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(txtPoeniZaProlaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPoeniZaProlaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TipComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,6 +205,7 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
         tz.setNaziv(txtNaziv.getText());
         tz.setPoeniZaProlaz(Integer.parseInt(txtPoeniZaProlaz.getText()));
         tz.setListaPitanja(tmp.getPitanjeList());
+        tz.setTipTestaZnanja((TipTestaZnanja) TipComboBox.getSelectedItem());
         tmp.addTestZnanja(tz);
         Request request = new Request();
         request.setData(tz);
@@ -218,12 +230,14 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeletePitanjeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<TipTestaZnanja> TipComboBox;
     private javax.swing.JButton btnAddPitanje;
     private javax.swing.JButton btnDeletePitanje;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePitanja;
     private javax.swing.JTextField txtNaziv;
@@ -236,6 +250,9 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
         tmp = new TableModelPitanja();
         tablePitanja.setModel(tmp);
         btnSave.setEnabled(false);
+        TipComboBox.addItem(new TipTestaZnanja(1, "Kviz"));
+        TipComboBox.addItem(new TipTestaZnanja(2, "Test"));
+        TipComboBox.addItem(new TipTestaZnanja(3, "Ispit"));
     }
 
     private void setVerifiers() {

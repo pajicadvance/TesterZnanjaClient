@@ -6,6 +6,7 @@ package com.pajic.view.component;
 
 import com.pajic.model.Pitanje;
 import com.pajic.model.TestZnanja;
+import com.pajic.model.TipTestaZnanja;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class TableModelTestoviZnanja extends AbstractTableModel {
     
     private List<TestZnanja> testoviZnanjaList;
-    private final String[] columns = {"Naziv", "Poeni za prolaz"};
+    private final String[] columns = {"Naziv", "Poeni za prolaz", "Tip"};
 
     public TableModelTestoviZnanja(List<TestZnanja> testoviZnanjaList) {
         this.testoviZnanjaList = testoviZnanjaList;
@@ -44,15 +45,17 @@ public class TableModelTestoviZnanja extends AbstractTableModel {
         return switch (columnIndex) {
             case 0 -> testZnanja.getNaziv();
             case 1 -> testZnanja.getPoeniZaProlaz();
+            case 2 -> testZnanja.getTipTestaZnanja().getNaziv();
             default -> "n/a";
         };
     }
     
-    public void addTestZnanja(String naziv, double poeniZaProlaz, List<Pitanje> listaPitanja) {
+    public void addTestZnanja(String naziv, double poeniZaProlaz, List<Pitanje> listaPitanja, TipTestaZnanja tipTestaZnanja) {
         TestZnanja testZnanja = new TestZnanja();
         testZnanja.setNaziv(naziv);
         testZnanja.setPoeniZaProlaz(poeniZaProlaz);
         testZnanja.setListaPitanja(listaPitanja);
+        testZnanja.setTipTestaZnanja(tipTestaZnanja);
         testoviZnanjaList.add(testZnanja);
         fireTableDataChanged();
     }
