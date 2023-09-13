@@ -9,10 +9,20 @@ import com.pajic.view.form.MainFrame;
 import java.io.IOException;
 
 /**
+ * Main klasa projekta TesterZnanjaClient.
  *
- * @author Pavle
+ * @author Pavle Pajic
+ * @since 1.0.0
  */
 public class Main {
+    /**
+     * Entrypoint klijentske aplikacije.
+     *
+     * Inicijalizuje i prikazuje glavnu klijentsku formu.
+     *
+     * @param args Argumenti pri pokretanju aplikacije iz komandne linije (neiskorisceno).
+     * @throws IOException - - Ukoliko dodje do greske prilikom komunikacije klijenta sa serverom.
+     */
     public static void main(String[] args) throws IOException {
         MainFrame mainFrame = new MainFrame();
         mainFrame.setLocationRelativeTo(null);

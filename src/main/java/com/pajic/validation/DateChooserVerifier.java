@@ -9,8 +9,12 @@ import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 
 /**
+ * Predstavlja specifican InputVerifier specijalizovan za verifikaciju komponente JDateChooser.
  *
- * @author Pavle
+ * Nasledjuje klasu InputVerifier.
+ *
+ * @author Pavle Pajic
+ * @since 1.0.0
  */
 public class DateChooserVerifier extends InputVerifier {
 

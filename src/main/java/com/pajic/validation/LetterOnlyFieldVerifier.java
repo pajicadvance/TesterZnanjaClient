@@ -9,14 +9,31 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 /**
+ * Predstavlja specifican InputVerifier specijalizovan za verifikaciju komponente JTextField gde je dozvoljen samo unos slova.
  *
- * @author Pavle
+ * Sadrzi maksimalnu duzinu podatka i da li je dozvoljeno prazno polje.
+ *
+ * Nasledjuje klasu InputVerifier.
+ *
+ * @author Pavle Pajic
+ * @since 1.0.0
  */
 public class LetterOnlyFieldVerifier extends InputVerifier {
-    
+
+    /**
+     * Maksimalna duzina podatka.
+     */
     private final int maxLength;
+    /**
+     * Da li je dozvoljeno prazno polje.
+     */
     private final boolean allowBlank;
 
+    /**
+     * Konstruktor koji vraca novu instancu ovog verifikatora.
+     * @param length - Vrednost koja se dodeljuje atributu length.
+     * @param allowBlank - Vrednost koja se dodeljuje atributu allowBlank.
+     */
     public LetterOnlyFieldVerifier(int length, boolean allowBlank) {
         this.maxLength = length;
         this.allowBlank = allowBlank;

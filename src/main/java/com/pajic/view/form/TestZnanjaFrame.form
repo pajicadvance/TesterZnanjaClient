@@ -7,9 +7,6 @@
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[800, 600]"/>
-    </Property>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>
@@ -40,8 +37,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblTekstPitanja" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+                  <Component id="separator2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="separator1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btnProveri" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -51,19 +48,19 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="fdhgdfg" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHBrojPitanja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblBrojPitanja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="fdgkj" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHVrednostPitanja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblVrednostPitanja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="386" max="32767" attributes="0"/>
-                      <Component id="hfghfg" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHPoeni" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblPoeni" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHPoeniZaProlaz" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblPoeniZaProlaz" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -77,21 +74,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fdhgdfg" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="hfghfg" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fdgkj" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHBrojPitanja" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHPoeni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHVrednostPitanja" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblVrednostPitanja" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblBrojPitanja" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPoeni" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPoeniZaProlaz" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHPoeniZaProlaz" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="separator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTekstPitanja" min="-2" pref="111" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="separator2" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnProveri" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -104,7 +101,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="fdhgdfg">
+    <Component class="javax.swing.JLabel" name="lblHBrojPitanja">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pitanje"/>
       </Properties>
@@ -115,7 +112,7 @@
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    <Component class="javax.swing.JSeparator" name="separator2">
     </Component>
     <Component class="javax.swing.JButton" name="btnProveri">
       <Properties>
@@ -133,14 +130,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSledecePitanjeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator2">
+    <Component class="javax.swing.JSeparator" name="separator1">
     </Component>
-    <Component class="javax.swing.JLabel" name="hfghfg">
+    <Component class="javax.swing.JLabel" name="lblHPoeni">
       <Properties>
         <Property name="text" type="java.lang.String" value="Poeni:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="fdgkj">
+    <Component class="javax.swing.JLabel" name="lblHVrednostPitanja">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vrednost:"/>
       </Properties>
@@ -170,7 +167,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblHPoeniZaProlaz">
       <Properties>
         <Property name="text" type="java.lang.String" value="Prolaz:"/>
       </Properties>
