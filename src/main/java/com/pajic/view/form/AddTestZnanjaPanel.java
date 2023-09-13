@@ -4,6 +4,8 @@
  */
 package com.pajic.view.form;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pajic.communication.Operation;
 import com.pajic.communication.Request;
 import com.pajic.communication.Response;
@@ -12,11 +14,13 @@ import com.pajic.model.TipTestaZnanja;
 import com.pajic.validation.DigitOnlyFieldVerifier;
 import com.pajic.validation.TextFieldVerifier;
 import com.pajic.view.component.TableModelPitanja;
+import java.io.FileWriter;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,6 +81,7 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
         lblPitanja = new javax.swing.JLabel();
         lblTip = new javax.swing.JLabel();
         comboBoxTip = new javax.swing.JComboBox<>();
+        btnSaveToJson = new javax.swing.JButton();
 
         lblNaziv.setText("Naziv");
 
@@ -132,6 +137,13 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
 
         lblTip.setText("Tip");
 
+        btnSaveToJson.setText("Sacuvaj izabrani test znanja u fajl");
+        btnSaveToJson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveToJsonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,8 +175,11 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblPoeniZaProlaz)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPoeniZaProlaz, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnAddPitanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(txtPoeniZaProlaz))
+                                    .addComponent(btnAddPitanje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSaveToJson)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblPitanja)
@@ -179,10 +194,10 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
                         .addComponent(lblNaziv)
                         .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPoeniZaProlaz)
                         .addComponent(txtPoeniZaProlaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(comboBoxTip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblTip)))
+                        .addComponent(lblTip)
+                        .addComponent(lblPoeniZaProlaz)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPitanja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,8 +207,10 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeletePitanje)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSaveToJson)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSave))
-                    .addComponent(scrollPaneTablePitanja, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+                    .addComponent(scrollPaneTablePitanja, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -228,7 +245,7 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
 
     /**
      * Konstruise test znanja koriscenjem podataka unetih u formu i dodaje ga u bazu podataka.
-     * @param evt
+     * @param evt - Predstavlja dogadjaj koji se desio nad dugmetom (klik).
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         tz.setNaziv(txtNaziv.getText());
@@ -262,6 +279,32 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
         else JOptionPane.showMessageDialog(this, "Pitanje nije izabrano");
     }//GEN-LAST:event_btnDeletePitanjeActionPerformed
 
+    /**
+     * Konstruise test znanja koriscenjem podataka unetih u formu i cuva ga u JSON fajl na lokalnom uredjaju.
+     * @param evt - Predstavlja dogadjaj koji se desio nad dugmetom (klik).
+     */
+    private void btnSaveToJsonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToJsonActionPerformed
+        tz.setNaziv(txtNaziv.getText());
+        tz.setPoeniZaProlaz(Integer.parseInt(txtPoeniZaProlaz.getText()));
+        tz.setListaPitanja(tmp.getPitanjeList());
+        tz.setTipTestaZnanja((TipTestaZnanja) comboBoxTip.getSelectedItem());
+        tmp.addTestZnanja(tz);
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int option = fileChooser.showSaveDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath() + "\\" + tz.getNaziv() + ".json";
+            System.out.println(path);
+            try (FileWriter writer = new FileWriter(path)) {
+                gson.toJson(tz, writer);
+                JOptionPane.showMessageDialog(this, "Test znanja uspesno sacuvan u JSON fajl");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Neuspesno cuvanje JSON fajla" + ex);
+            }
+        }
+    }//GEN-LAST:event_btnSaveToJsonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     /**
      * Dugme koje otvara formu za dodavanje novog pitanja u test znanja.
@@ -275,6 +318,10 @@ public class AddTestZnanjaPanel extends javax.swing.JPanel {
      * Dugme koje dodaje test znanja u bazu podataka.
      */
     private javax.swing.JButton btnSave;
+    /**
+     * Dugme koje cuva test znanja u JSON fajl na lokalnom uredjaju.
+     */
+    private javax.swing.JButton btnSaveToJson;
     /**
      * Combo box kojim se bira tip testa znanja.
      */

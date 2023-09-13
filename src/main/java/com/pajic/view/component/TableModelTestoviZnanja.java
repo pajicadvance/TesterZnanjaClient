@@ -72,7 +72,7 @@ public class TableModelTestoviZnanja extends AbstractTableModel {
         return switch (columnIndex) {
             case 0 -> testZnanja.getNaziv();
             case 1 -> testZnanja.getPoeniZaProlaz();
-            case 2 -> testZnanja.getTipTestaZnanja().getNaziv();
+            case 2 -> testZnanja.getTipTestaZnanja();
             default -> "n/a";
         };
     }

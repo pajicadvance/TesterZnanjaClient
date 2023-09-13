@@ -44,13 +44,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblPoeniZaProlaz" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtPoeniZaProlaz" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <Component id="txtPoeniZaProlaz" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="btnAddPitanje" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnSaveToJson" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -73,10 +77,10 @@
                       <Component id="txtNaziv" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="lblPoeniZaProlaz" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPoeniZaProlaz" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="comboBoxTip" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTip" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPoeniZaProlaz" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -88,9 +92,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnDeletePitanje" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnSaveToJson" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="scrollPaneTablePitanja" pref="407" max="32767" attributes="0"/>
+                  <Component id="scrollPaneTablePitanja" pref="422" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -182,6 +188,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;TipTestaZnanja&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSaveToJson">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sacuvaj izabrani test znanja u fajl"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveToJsonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
